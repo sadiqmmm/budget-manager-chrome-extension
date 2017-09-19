@@ -1,5 +1,9 @@
 $(function(){
 
+	chrome.storage.sync.get('limit', function(budget){		
+		$('#limit').val(budget.limit);
+	});
+
 	$('#saveLimit').click(function(){
 		var limit = $('#limit').val();		
 

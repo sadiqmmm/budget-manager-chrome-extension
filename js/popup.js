@@ -1,8 +1,13 @@
 $(function(){
+	
+	chrome.storage.sync.get('total', function(budget){
+		$('#total').text(budget.total);
+	});
+
 	$('#spendAmount').click(function(){
 
 		// chrome storage get
-		chrome.stroage.sync.get('total', function(budget){
+		chrome.storage.sync.get('total', function(budget){
 			var newTotal = 0;
 
 			if (budget.total) {
@@ -10,12 +15,12 @@ $(function(){
 			}
 
 			var amount = $('#amount').val();
-			
+
 			if(amount) {
 				newTotal += parseInt(amount);
 			}
 			// chrome storage set
-			chrome.stroage.sync.set({'total': newTotal});
+			chrome.storage.sync.set({'total': newTotal});
 
 			$('#total').text(newTotal);
 			$('#amount').val(''); 
